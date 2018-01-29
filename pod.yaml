@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: some-pod
+spec:
+  containers:
+    - name: some-pod
+      image: alpine
+      command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
+  restartPolicy: Never
