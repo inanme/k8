@@ -1,0 +1,19 @@
+
+
+LoadBalancer external load balancer
+ClusterIP    inside the cluster
+
+
+kubectl expose rc kubia --type=LoadBalancer --name kubia-http
+kubectl port-forward kubia-manual 8888:8080
+kubectl get pods --show-labels
+kubectl get pods -Lapp
+kubeclt create namespace inanme
+kubectl config set-context minikube --namespace inanme
+kubectl delete service,deployment my-app --namespace default 
+kubectl delete all --all
+
+
+
+minikube service kubia-http
+
