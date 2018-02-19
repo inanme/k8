@@ -13,9 +13,17 @@ spec:
     metadata:
       labels:
         app: my-app
+        version: v-%version%
     spec:
       containers:
       - name: my-app
-        image: inanme/m1:1
+        image: inanme/app:%version%
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 8080
+          initialDelaySeconds: 5
+

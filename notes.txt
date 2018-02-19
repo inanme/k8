@@ -11,9 +11,12 @@ kubectl get pods -Lapp
 kubeclt create namespace inanme
 kubectl config set-context minikube --namespace inanme
 kubectl delete service,deployment my-app --namespace default 
-kubectl delete all --all
 
+kubectl delete all --all
+kubectl expose deployment my-app --type=LoadBalancer --name my-app --namespace inanme
+minikube service my-app --namespace inanme
 
 
 minikube service kubia-http
 
+kubectl get pods -Lapp -Lversion
