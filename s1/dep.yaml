@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sapp
+spec:
+  clusterIP: None
+  selector:
+    app: sapp
+  ports:
+  - name: http
+    port: %port%
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sapp
+spec:
+  serviceName: sapp
+  selector:
+      matchLabels:
+        app: sapp
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: sapp
+    spec:
+      containers:
+      - name: sapp
+        image: inanme/sapp:%version%
+        imagePullPolicy: Always
+        args: ["%port%"]
+        ports:
+        - name: http
+          containerPort: %port%
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: %port%
+          initialDelaySeconds: 2
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: %port%
+          initialDelaySeconds: 2
+        volumeMounts:
+        - name: data
+          mountPath: /var/data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      resources:
+        requests:
+          storage: 1Mi
+      accessModes:
+      - ReadWriteOnce

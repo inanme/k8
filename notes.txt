@@ -24,3 +24,8 @@ kubectl get pods -Lapp -Lversion
 kubectl label node minikube disk=ssd
 
 kubectl port-forward my-app-f69c57f99-5k8cl 10557:8080
+
+
+openssl genrsa -out https.key 2048
+openssl req -new -x509 -key https.key -out https.cert -days 3650 -subj
+     /CN=www.kubia-example.com

@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-a
+  labels:
+    name: pv-a
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  hostPath:
+    path: "/data/pv-a"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-b
+  labels:
+    name: pv-b
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  hostPath:
+    path: "/data/pv-b"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-c
+  labels:
+    name: pv-c
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  hostPath:
+    path: "/data/pv-c"
+

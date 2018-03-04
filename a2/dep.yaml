@@ -33,6 +33,9 @@ spec:
             path: /health
             port: %port%
           initialDelaySeconds: 5
+        env:
+        - name: APP_VERSION
+          value: "%version%"  
 ---
 apiVersion: v1
 kind: Service
