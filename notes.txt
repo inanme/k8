@@ -20,3 +20,7 @@ minikube service my-app --namespace inanme
 minikube service kubia-http
 
 kubectl get pods -Lapp -Lversion
+
+kubectl label node minikube disk=ssd
+
+kubectl port-forward my-app-f69c57f99-5k8cl 10557:8080

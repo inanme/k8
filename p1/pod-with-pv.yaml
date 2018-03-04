@@ -1,7 +1,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: some-pod
+  name: some-pod-pvc
 spec:
   restartPolicy: Never  
   containers:
@@ -16,3 +16,10 @@ spec:
         exec:
           command:
           - ls
+      volumeMounts:
+      - name: pvc
+        mountPath: /data/db       
+  volumes:
+  - name: pvc
+    persistentVolumeClaim:
+      claimName: pvc0001

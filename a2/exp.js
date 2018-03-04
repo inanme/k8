@@ -15,6 +15,15 @@ app.get("/status", (req, res) => {
 	}
 });
 
+app.get("/health", (req, res) => {
+	const r = getRandomInt(10)
+	if(getRandomInt(10) ==0 ){
+		throw new Error("No, no");
+	} else {
+		res.send(`OK--(${r})`);
+	}
+});
+
 app.get("/", (req, res) => {
   console.log("Received request from " + req.connection.remoteAddress);
   res.writeHead(200);
