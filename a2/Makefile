@@ -20,11 +20,10 @@ deploy:
 	kubectl apply -f dep-${version}-temp.yaml --namespace inanme --record
 
 rmi:
+	echo $0
 	kubectl delete all --all
-	-docker rmi inanme/app:1
-	-docker rmi inanme/app:2
-	-docker rmi inanme/app:3
-	-docker rmi inanme/app:4
+	-@seq 1 4 | awk '$$0="inanme/app:"$$0' | xargs docker rmi
+	-@seq 1 4 | awk '$$0="inanme/sapp:"$$0' | xargs docker rmi
 	docker images
 
 rollout:
